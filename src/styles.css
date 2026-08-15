@@ -1,0 +1,290 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-maroon: var(--maroon);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Karla", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.16 0.02 30);
+  --foreground: oklch(0.95 0.012 80);
+  --card: oklch(0.2 0.025 32);
+  --card-foreground: oklch(0.95 0.012 80);
+  --popover: oklch(0.2 0.025 32);
+  --popover-foreground: oklch(0.95 0.012 80);
+  --primary: oklch(0.78 0.13 82);
+  --primary-foreground: oklch(0.18 0.03 30);
+  --secondary: oklch(0.31 0.09 22);
+  --secondary-foreground: oklch(0.95 0.012 80);
+  --muted: oklch(0.24 0.02 32);
+  --muted-foreground: oklch(0.74 0.02 70);
+  --accent: oklch(0.36 0.11 20);
+  --accent-foreground: oklch(0.95 0.012 80);
+  --destructive: oklch(0.58 0.2 27);
+  --destructive-foreground: oklch(0.97 0.01 80);
+  --border: oklch(0.78 0.13 82 / 22%);
+  --input: oklch(0.78 0.13 82 / 25%);
+  --ring: oklch(0.78 0.13 82 / 60%);
+  --gold: oklch(0.82 0.13 84);
+  --gold-soft: oklch(0.9 0.07 88);
+  --maroon: oklch(0.32 0.1 20);
+  --gradient-gold: linear-gradient(
+    100deg,
+    oklch(0.7 0.11 70),
+    oklch(0.92 0.09 92),
+    oklch(0.74 0.12 78)
+  );
+  --shadow-lux: 0 24px 60px -24px oklch(0.05 0.02 30 / 85%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility text-gold-gradient {
+  background-image: var(--gradient-gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility surface-lux {
+  background:
+    linear-gradient(
+      145deg,
+      oklch(0.22 0.03 32 / 90%),
+      oklch(0.17 0.02 30 / 92%)
+    );
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lux);
+}
+
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background-image: var(--gradient-gold);
+  color: var(--primary-foreground);
+  border-radius: var(--radius);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 10px 30px -12px oklch(0.82 0.13 84 / 60%);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -14px oklch(0.82 0.13 84 / 75%);
+  }
+}
+
+@utility btn-ghost-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  color: var(--color-gold);
+  border-radius: var(--radius);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &:hover {
+    background: oklch(0.82 0.13 84 / 10%);
+    border-color: var(--color-gold);
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes lux-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(0, -1.5%, 0);
+  }
+}
+
+@keyframes ring-draw {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes splash-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-float {
+  animation: lux-float 6s ease-in-out infinite;
+}
+
+@utility animate-ken-burns {
+  animation: ken-burns 22s ease-out infinite alternate;
+}
+
+@utility animate-rise {
+  animation: rise-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@utility shimmer {
+  background-image: linear-gradient(
+    100deg,
+    oklch(0.7 0.11 70),
+    oklch(0.98 0.06 95),
+    oklch(0.7 0.11 70)
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 4.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
